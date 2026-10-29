@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class NilaiKelompok03 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Masukan jumlah kelompok : ");
+        int jumlahKelompok = sc.nextInt();
+        System.out.print("Masukan jumlah penilai : ");
+        int jumlahPenilai = sc.nextInt();
+
+        if (jumlahKelompok <= 0 || jumlahPenilai <= 0) {
+            System.out.println("Jumlah kelompok dan penilai harus > 0.");
+        } else {
+            int nomorKelompok = 1;
+            double rataTertinggi = -1;
+            int kelompokTerbaik = 0;
+
+        while (nomorKelompok <= jumlahKelompok) {
+            System.out.println("kelompok " + nomorKelompok);
+            double nilaiTotal = 0;
+            for (int j = 1; j <= jumlahPenilai; j++) {
+                int nilai;
+                do{
+                    System.out.print(" Nilai dari penilai " + j + ": " );
+                    nilai = sc.nextInt();
+                    if (nilai < 0 || nilai > 100) {
+                        System.out.println(" Nilai harus 0-100. Ulangi input!");
+                    }
+                } while (nilai < 0 || nilai > 100);
+                nilaiTotal += nilai;
+                
+            }
+            double rataNilai = nilaiTotal / jumlahPenilai;
+            System.out.println("kelompok " + nomorKelompok + ": nilai rata-rata = " + rataNilai);
+
+            if (rataNilai > rataTertinggi) {
+                rataTertinggi = rataNilai;
+                kelompokTerbaik = nomorKelompok;
+            }
+
+            nomorKelompok++;
+        }
+        System.out.println("==============================");
+        System.out.println("kelompok terbaik    : " + kelompokTerbaik);
+        System.out.println("rata-rata tertinggi : " + rataTertinggi);
+    }
+}
+}
